@@ -40,30 +40,20 @@ export default function App() {
     discovery
   );
 
-  function handleGithusbOAuthCode(code: string){
-    api.post('/register', {
+  async function handleGithubOAuthCode(code: string) {
+    const response = await api.post('/register', {
       code,
-    }).then(response => {
-      const { token } = response.data
-      //console.log(token)
-      SecureStore.setItemAsync('token', token)
-    }).catch(err => {
-      console.error(err)
     })
+    const { token } = response.data
+    //console.log(token)
+    await SecureStore.setItemAsync('token', token)
+    router.push('/memories')
   }
-
-
   useEffect(() => {
-    /*    console.log(
-      makeRedirectUri({
-        scheme: 'NLWspacetime'
-      }),
-    )*/
-    //console.log(response)
     if (response?.type === 'success') {
-      const { code } = response.params;
+      const { code } = response.params
       //console.log(code)
-      handleGithusbOAuthCode(code)
+      handleGithubOAuthCode(code)
     }
   }, [response]);
 
