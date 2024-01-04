@@ -23,13 +23,9 @@ const discovery = {
 
 export default function App() {
   const router = useRouter()
-  const [hasLoadedFonts] = useFonts({
-    Roboto_400Regular,
-    Roboto_700Bold,
-    BaiJamjuree_700Bold,
-  })
-
-  const [response, singInWithGitHub] = useAuthRequest(
+  const [hasLoadedFonts] = useFonts({Roboto_400Regular,Roboto_700Bold,BaiJamjuree_700Bold,})
+  
+  const [,response, singInWithGitHub] = useAuthRequest(
     {
       clientId: '8f27c945cb446f5d2945',
       scopes: ['identity'],
@@ -39,14 +35,15 @@ export default function App() {
     },
     discovery
   );
-
   async function handleGithubOAuthCode(code: string) {
     const response = await api.post('/register', {
       code,
     })
+
     const { token } = response.data
-    //console.log(token)
+
     await SecureStore.setItemAsync('token', token)
+
     router.push('/memories')
   }
   useEffect(() => {
