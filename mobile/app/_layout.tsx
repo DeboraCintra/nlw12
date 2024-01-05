@@ -23,7 +23,7 @@ export default function Layout() {
   }, [])
 
   if (!hasLoadedFonts) {
-    return <SplashScreen/>
+     SplashScreen.hideAsync()
   }
 
   return (
@@ -32,6 +32,7 @@ export default function Layout() {
       <StatusBar style="light" translucent /> 
       <Stack screenOptions={{headerShown: false, contentStyle:{backgroundColor: 'transparent'}}}>
         <Stack.Screen name="index" redirect={isUserAuthenticated}/>
+        <Stack.Screen name="new"/>
         <Stack.Screen name="memories"/>
       </Stack>
     </ImageBackground>

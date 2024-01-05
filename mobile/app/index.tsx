@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
@@ -6,9 +5,6 @@ import * as SecureStore from 'expo-secure-store';
 import { useRouter } from 'expo-router'
 import { api } from '../src/lib/api';
 import NLWLogo from '../src/assets/nlw-spacetime-logo.svg'
-import { BaiJamjuree_700Bold } from '@expo-google-fonts/bai-jamjuree';
-import { Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
-import { useFonts } from 'expo-font';
 
 // Endpoint
 const discovery = {
@@ -40,7 +36,7 @@ export default function App() {
 
     router.push('/memories')
   }
-  
+
   useEffect(() => {
     if (response?.type === 'success') {
       const { code } = response.params
