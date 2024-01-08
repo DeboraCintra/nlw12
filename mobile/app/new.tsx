@@ -1,5 +1,5 @@
 import { Link } from "expo-router";
-import {View, TouchableOpacity, Switch, Text} from "react-native";
+import {View, TouchableOpacity, Switch, Text, TextInput, ScrollView} from "react-native";
 import NLWLogo from '../src/assets/nlw-spacetime-logo.svg'
 import Icon from '@expo/vector-icons/Feather'
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -9,7 +9,7 @@ export default function NewMemory(){
   const { bottom, top} = useSafeAreaInsets()
   const [isPublic, setIsPublic] = useState(false)
   return(
-    <View className='flex-1 px-8' style={{paddingBottom: bottom, paddingTop: top}}>
+    <ScrollView className='flex-1 px-8' contentContainerStyle={{paddingBottom: bottom, paddingTop: top}}>
       <View className="mt-4 flex-row items-center justify-between">
         <NLWLogo/>
         <Link href="/memories" asChild>
@@ -26,12 +26,23 @@ export default function NewMemory(){
           <Text className="font-bold text-base text-gray-200"> Tornar memória publica </Text>
         </View>
 
-        <TouchableOpacity className="h-32 justify-center rounded-lg border border-dashed border-gray-500 bg-black/20">
-          <View>
-            
+        <TouchableOpacity activeOpacity={0.7} className="h-32 items-center justify-center rounded-lg border border-dashed border-gray-500 bg-black/20">
+          <View className="flex-row items-center gap-2">
+            <Icon name="image" color="#FFF"/>  
+            <Text className="font-body text-sm text-gray-200">
+              Adicionar foto ou video de capa
+            </Text> 
           </View>
         </TouchableOpacity>
+        <TextInput multiline className="p-0 font-body text-lg text-gray-50 " placeholderTextColor="#56565a"
+        placeholder="Fique livre para adicionar fotos, vídeos e relatos sobre essa experiência que você quer lembrar para sempre."/>
+
+        <TouchableOpacity
+          activeOpacity={0.7}
+          className='items-center rounded-full bg-green-500 px-5 py-2'>
+          <Text className='font-alt text-sm uppercase text-black'>Salvar</Text>
+        </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   )
 }
