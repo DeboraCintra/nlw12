@@ -34,24 +34,19 @@ export default function NewMemory() {
 
   async function handleCreateMemory() {
     const token = await SecureStore.getItemAsync('token')
-
     let coverUrl = ''
-
     if (preview) {
       const uploadFormData = new FormData()
-
       uploadFormData.append('file', {
         uri: preview,
         name: 'image.jpg',
         type: 'image/jpg',
       } as any)
-
       const uploadResponse = await api.post('/upload', uploadFormData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       })
-
       coverUrl = uploadResponse.data.fileUrl
     }
 
