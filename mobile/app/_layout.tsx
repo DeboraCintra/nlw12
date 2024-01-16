@@ -14,7 +14,7 @@ const StyleStripes = styled(Stripes)
 export default function Layout() {
   const [isUserAuthenticated, setIsUserAuthenticate] = useState<null | boolean>(null,) 
 
-  const [hasLoadedFonts] = useFonts({Roboto_400Regular,Roboto_700Bold,BaiJamjuree_700Bold,})
+  const [hasLoadedFonts] = useFonts({Roboto_400Regular,Roboto_700Bold,BaiJamjuree_700Bold})
 
   useEffect(() => {
     SecureStore.getItemAsync('token').then(token =>{
@@ -23,8 +23,12 @@ export default function Layout() {
   }, [])
 
   if (!hasLoadedFonts) {
-     SplashScreen.hideAsync()
+    //  SplashScreen.hideAsync()
+    return null
   }
+  // if (!hasLoadedFonts) {
+  //   return <SplashScreen />
+  // }
 
   return (
     <ImageBackground source={blurBg} className='relative  flex-1 bg-gray-900' imageStyle={{ position: 'absolute', left: '-100%' }}>
