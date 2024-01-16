@@ -1,14 +1,5 @@
-import {
-  Image,
-  ScrollView,
-  Switch,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native'
+import { Image, ScrollView, Switch, Text, TextInput, TouchableOpacity, View, } from 'react-native'
 import Icon from '@expo/vector-icons/Feather'
-
 import NLWLogo from '../src/assets/nlw-spacetime-logo.svg'
 import { Link, useRouter } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -64,8 +55,7 @@ export default function NewMemory() {
       coverUrl = uploadResponse.data.fileUrl
     }
 
-    await api.post(
-      '/memories',
+    await api.post('/memories',
       {
         content,
         isPublic,
